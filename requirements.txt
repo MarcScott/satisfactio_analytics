@@ -1,0 +1,4 @@
+oauth2client
+pyopenssl
+google-api-python-client
+requests
