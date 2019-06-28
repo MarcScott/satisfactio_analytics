@@ -63,7 +63,6 @@ def fetch_csv_projects():
     return csv_projects
 
 
-
 ## Global MONTH
 MONTH = ''
 
@@ -350,6 +349,14 @@ def calculate_total_views(projects):
             print(project)
     return sum([int(projects[project]['analytics']['1'][1]) for project in projects])
 
+
+def calculate_total_ratings(projects):
+    likes = sum([int(projects[project]['satisfaction']['like']) for project in projects])
+    okays = sum([int(projects[project]['satisfaction']['ok']) for project in projects])
+    dislikes = sum([int(projects[project]['satisfaction']['dislike']) for project in projects])
+    return likes + okays + dislikes
+
+
 def calculate_average_satisfaction(projects):
     ##debug        
     likes = sum([int(projects[project]['satisfaction']['like']) for project in projects])
@@ -360,6 +367,7 @@ def calculate_average_satisfaction(projects):
     except ZeroDivisionError:
         return 0
     
+
 def calculate_core_satisfaction(projects, core):
     likes = sum([int(projects[project]['satisfaction']['like']) for project in projects if project in core])
     okays = sum([int(projects[project]['satisfaction']['ok']) for project in projects if project in core])
@@ -410,7 +418,7 @@ def calculate_bottom_five(projects):
 def build_sheet_data(projects):
     ## gather core data as list
     data = [MONTH]
-    data.append(calculate_total_views(projects))
+    data.append(calculate_total_ratings(projects))
     data.append(calculate_average_satisfaction(projects))
     data.append(calculate_core_satisfaction(projects, CC_CORE))
     data.append(calculate_core_satisfaction(projects, CD_CORE))
