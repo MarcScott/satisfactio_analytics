@@ -24,7 +24,8 @@ import requests
 csv.field_size_limit(sys.maxsize)
 
 ## Fetch the project tags from dataclips
-url = "https://dataclips.heroku.com/gselhclcwirgagjzhpbxioglalbg.csv"
+url ="https://data.heroku.com/dataclips/rtlwjzxzdjksnvimkzrsitfaczcm.csv?access-token=308a0659-def6-4a36-b5aa-0c6577672cbd"
+#url = "https://dataclips.heroku.com/gselhclcwirgagjzhpbxioglalbg.csv"
 
 CC_CORE = ['rock-band', 'lost-in-space', 'ghostbusters', 'chatbot', 'paint-box', 'boat-race',
            'memory', 'dodgeball', 'brain-game', 'catch-the-dots', 'clone-wars', 'create-your-own-world',
@@ -425,7 +426,7 @@ def build_sheet_data(projects):
     top_five = calculate_top_five(projects)
     data.extend([i for j in top_five for i in j])
     bottom_five = calculate_bottom_five(projects)
-    data.extend([i for j in top_five for i in j])
+    data.extend([i for j in bottom_five for i in j])
     data.append(calculate_language_satisfaction(projects, 'scratch'))
     data.append(calculate_language_satisfaction(projects, 'python'))
     data.append(calculate_language_satisfaction(projects, 'html-css-javascript'))
